@@ -1,10 +1,15 @@
-require 'rubygems'
 require 'sinatra/base'
 require 'haml'
-require 'models/blog_model'
+require 'mongo_mapper'
+require 'yaml'
+require 'log_buddy'
+require File.join(File.dirname(__FILE__),'../config/db')
+require File.join(File.dirname(__FILE__), '../models/blog_model')
 
 class Blogger < Sinatra::Base
   # directory path settings relative to app file
+  
+  set :app_path, '/'
   set :root, File.join(File.dirname(__FILE__), '..')
   set :public, Proc.new { File.join(root, 'public') }
   set :method_override, true
@@ -61,7 +66,7 @@ class Blogger < Sinatra::Base
   end
   
   #delete blog
-  delete '/:id' do |id|
+  get '/delete/:id' do |id|
     @doc = Blog_model.find(id)
     @doc.delete
     redirect '/'

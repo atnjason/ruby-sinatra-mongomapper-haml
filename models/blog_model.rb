@@ -1,6 +1,3 @@
-require 'rubygems'
-require 'mongo_mapper'
-
 class Blog_model
   include MongoMapper::Document
   
