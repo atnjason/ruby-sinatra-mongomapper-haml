@@ -8,10 +8,10 @@ require File.join(File.dirname(__FILE__), '../models/blog_model')
 
 class Blogger < Sinatra::Base
   # directory path settings relative to app file
-  
+
   set :app_path, '/'
   set :root, File.join(File.dirname(__FILE__), '..')
-  set :public, Proc.new { File.join(root, 'public') }
+  set :public_folder, Proc.new { File.join(root, 'public') }
   set :method_override, true
   
   def initialize
